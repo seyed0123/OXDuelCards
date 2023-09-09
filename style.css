@@ -25,7 +25,7 @@ main{
     border: 1px solid black;
 }
 .pos{
-    width: 200px;
+    width: 400px;
 }
 .card-pos-a{
     grid-area: a;
@@ -85,5 +85,8 @@ main{
     transform: rotateY(180deg);
 }
 .card:hover .card-inner{
+    transform: rotateY(180deg);
+}
+.card-inner .flip-it{
     transform: rotateY(180deg);
 }

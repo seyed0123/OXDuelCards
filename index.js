@@ -11,31 +11,88 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const cardContainerElem = document.querySelector('.card-container')
 
-//     < div
-// className = "card" >
-//     < div
-// className = "card-inner" >
-//     < div
-// className = "card-front" >
-//     < img
-// src = "/images/card-JackClubs.png"
-// className = "card-img" >
-//     < /div>
-// <div className="card-back">
-//     <img src="/images/card-back-Blue.png" className="card-img">
-// </div>
-// </div>
-// </div>
+    let cards=[]
+    const playGameButtonElem = document.getElementById('playGame')
 
-    createCards()
+    const collapsedGrid ='"a a" "a a"'
+    const cardCellClass = '.card-pos-a'
+
+
+
+
+
+
+
+    loadGame()
+    
+    function loadGame() {
+        createCards()
+
+        cards=document.querySelectorAll('.card')
+
+        playGameButtonElem.addEventListener("click" , () => startGame())
+
+    }
+    
+    function startGame() {
+        initNewGame()
+        startRound()
+    }
+    function initNewGame() {
+        
+    }
+    
+    function startRound() {
+
+        initNewRound()
+        collectCards()
+        debugger
+        flipCards(true)
+    }
+    
+    function initNewRound() {
+        
+    }
+    
+    function collectCards() {
+        transformGridArea(collapsedGrid)
+        addCardsToGridAreaCell(cardCellClass)
+    }
+    function transformGridArea(areas) {
+        cardContainerElem.style.gridTemplateAreas = areas
+    }
+
+    function addCardsToGridAreaCell(cellPosition) {
+        const cellPositionElem = document.querySelector(cellPosition)
+        console.log(cellPositionElem)
+        cards.forEach((card , index) =>{
+            addChildElement(cellPositionElem , card)
+        })
+    }
+    
+    function flipCards(flipToBack) {
+        cards.forEach((card,index) =>{
+            setTimeout(() =>{
+                flipCard((card,flipToBack))
+            },index *100)
+        })
+    }
+    
+    function flipCard(card,flipToBack) {
+        const innerCardElem = card.firstChild
+
+        if(flipToBack && !innerCardElem.classList.contains('flip-it')) {
+            innerCardElem.classList.add('flip-it')
+        }else if(innerCardElem.classList.contains('flip-it')){
+            innerCardElem.classList.remove('flip-it')
+        }
+    }
 
     function createCards() {
         cardObjectDefinitions.forEach((cardItem) => {
-            console.log(cardItem)
             createCard(cardItem)
         })
     }
-
     function createCard(cardItem) {
         const cardElem = createElement('div')
         const cardInnerElem = createElement('div')
