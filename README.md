@@ -29,5 +29,6 @@ This project is licensed under the terms of the MIT license.
 ![Screenshot](shots/Screenshot.png)
 
 ### demo
+wait for it
 ![demo video](shots/card%20game.gif)
 
