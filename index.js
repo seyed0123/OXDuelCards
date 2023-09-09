@@ -64,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function addCardsToGridAreaCell(cellPosition) {
         const cellPositionElem = document.querySelector(cellPosition)
-        console.log(cellPositionElem)
         cards.forEach((card , index) =>{
             addChildElement(cellPositionElem , card)
         })
@@ -146,7 +145,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function addCardToGrid(card, id) {
-        debugger;
         const cardPosition = mapCardIdToGrid(id)
         const cardPostElem = document.querySelector(cardPosition)
         addChildElement(cardPostElem, card)
