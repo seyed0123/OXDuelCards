@@ -1,8 +1,9 @@
+window.onload = function () {
 const cardObjectDefinitions = [
     {id:1, imagePath:'/images/card-KingHearts.png'},
-    {id:2, imagePath:'/images/card-JackClubs.png'},
-    {id:3, imagePath:'/images/card-QueenDiamonds.png'},
-    {id:4, imagePath:'/images/card-AceSpades.png'}
+    {id:2, imagePath:'/images/24.png'},
+    {id:3, imagePath:'/images/queen.jpg'},
+    {id:4, imagePath:'/images/card-AceSpades.jpg'}
 ]
 const aceId = 4
 
@@ -52,7 +53,7 @@ const localStorageGameKey = "HTA"
         <img src="/images/card-JackClubs.png" alt="" class="card-img">
     </div>
     <div class="card-back">
-        <img src="/images/card-back-Blue.png" alt="" class="card-img">
+        <img src="/images/card-back-blue.png" alt="" class="card-img">
     </div>
 </div>
 </div> */
@@ -141,6 +142,7 @@ function updateScore()
     updateStatusElement(scoreElem, "block", primaryColor, `Score <span class='badge'>${score}</span>`)
 
 }
+
 function updateStatusElement(elem, display, color, innerHTML)
 {
     elem.style.display = display
@@ -468,6 +470,8 @@ function createCards()
         createCard(cardItem)
     })
 }
+
+
 function createCard(cardItem){
 
     //create div elements that make up a card
@@ -616,4 +620,4 @@ function saveGameObjectToLocalStorage(score,round)
 {
     updateGameObject(score, round)
     updateLocalStorageItem(localStorageGameKey, getSerializedObjectAsJSON(gameObj))
-}
+}}

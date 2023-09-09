@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200&display=swap');
 :root{
     --card-width-lg:157px;
     --card-height-lg:220px;
@@ -15,9 +15,39 @@
     --primary-color: black;
     --secondary-color: #ffffff;
 
-    --primary-font: 'Quicksand', sans-serif;
+    --primary-font: 'Roboto Slab', serif;;
 }
+html {
+    --u:  2.25vmin;
+    --c1: #83b0e3;
+    --c2: #6c91bb;
+    --c3: #4d6887;
+    --gp: 50%/calc(var(--u) * 5) calc(var(--u) * 10);
+    --bp: calc(var(--u) * -2.5) calc(var(--u) * -5);
+    height: 100vh;
+    --bg:
+            radial-gradient(circle at 50% 25%, var(--c2)  15%, #fff0 30% 100%) var(--gp),
+            conic-gradient(from 270deg at 34% 46%, var(--c2) 0 12.5%, #fff0 0 100%) var(--gp),
+            conic-gradient(from 45deg at 66% 46%, var(--c2) 0 12.5%, #fff0 0 100%) var(--gp),
+            conic-gradient(from 180deg at 50% 80%, var(--c2) 0 12.5%, #fff0 0 100%) var(--gp),
+            conic-gradient(from 135deg at 50% 80%, var(--c2) 0 12.5%, #fff0 0 100%) var(--gp),
+            conic-gradient(from 0deg at 0% 20%, var(--c2) 0 12.5%, #fff0 0 100%) var(--gp),
+            conic-gradient(from -45deg at 100% 20%, var(--c2) 0 12.5%, #fff0 0 100%) var(--gp),
+            linear-gradient(180deg, var(--c2) 0 4.5%, #fff0 0 45.25%, var(--c2) 0 50%, #fff0 0% 100%) var(--gp),
+            radial-gradient(circle at 50% 25%, #fff0 0 25%, var(--c2) 26% 32%, #fff0 0 100%) var(--gp),
+            linear-gradient(165deg, var(--c3) 15%, var(--c1) 44%, #fff0 0 100%) var(--gp),
+            linear-gradient(180deg, var(--c1) 50%, #fff0 0 100%) var(--gp);
+    background:
+            var(--bg),
+            var(--bg);
+    background-position:
+            var(--bp), var(--bp), var(--bp), var(--bp), var(--bp), var(--bp), var(--bp), var(--bp), var(--bp), var(--bp), var(--bp),
+            0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+}
+
 body{
+
+    background-color: rgba(256,256,256,0.6);
     height:100vh;
     font-family: var(--primary-font);
 }
@@ -76,8 +106,11 @@ main{
     width:100%;
     height:100%;
     text-align: center;
-    transition: transform 0.6s;
+    transition: transform 0.8s;
     transform-style: preserve-3d;
+}
+.card-inner:hover{
+    scale: 1.1;
 }
 .card-front, .card-back{
     position:absolute;
