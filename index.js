@@ -141,3 +141,105 @@ function updateScore()
     updateStatusElement(scoreElem, "block", primaryColor, `Score <span class='badge'>${score}</span>`)
 
 }
+function updateStatusElement(elem, display, color, innerHTML)
+{
+    elem.style.display = display
+
+    if(arguments.length > 2)
+    {
+        elem.style.color = color
+        elem.innerHTML = innerHTML
+    }
+
+}
+
+function outputChoiceFeedBack(hit)
+{
+    if(hit)
+    {
+        updateStatusElement(currentGameStatusElem, "block", winColor, "Hit!! - Well Done!! :)")
+    }
+    else
+    {
+        updateStatusElement(currentGameStatusElem, "block", loseColor, "Missed!! :(")
+    }
+}
+
+function evaluateCardChoice(card)
+{
+    if(card.id == aceId)
+    {
+        updateScore()
+        outputChoiceFeedBack(true)
+    }
+    else
+    {
+        outputChoiceFeedBack(false)
+    }
+}
+
+function canChooseCard()
+{
+    return gameInProgress == true && !shufflingInProgress && !cardsRevealed
+}
+
+
+
+function loadGame(){
+    createCards()
+
+    cards = document.querySelectorAll('.card')
+
+    cardFlyInEffect()
+
+    playGameButtonElem.addEventListener('click', ()=>startGame())
+
+    updateStatusElement(scoreContainerElem,"none")
+    updateStatusElement(roundContainerElem,"none")
+
+}
+
+function checkForIncompleteGame()
+{
+    const serializedGameObj = getLocalStorageItemValue(localStorageGameKey)
+    if(serializedGameObj)
+    {
+        gameObj = getObjectFromJSON(serializedGameObj)
+
+        if(gameObj.round >= maxRounds)
+        {
+            removeLocalStorageItem(localStorageGameKey)
+        }
+        else
+        {
+            if(confirm('Would you like to continue with your last game?'))
+            {
+                score = gameObj.score
+                roundNum = gameObj.round
+            }
+        }
+
+    }
+
+}
+
+function startGame(){
+    initializeNewGame()
+    startRound()
+
+}
+function initializeNewGame(){
+    score = 0
+    roundNum = 0
+
+    checkForIncompleteGame()
+
+    shufflingInProgress = false
+
+    updateStatusElement(scoreContainerElem,"flex")
+    updateStatusElement(roundContainerElem,"flex")
+
+    updateStatusElement(scoreElem,"block",primaryColor,`Score <span class='badge'>${score}</span>`)
+    updateStatusElement(roundElem,"block",primaryColor,`Round <span class='badge'>${roundNum}</span>`)
+
+}
