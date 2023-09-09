@@ -8,7 +8,7 @@ body{
     height: 100vh;
 }
 main{
-    height: 55%;
+    height: 70%;
     display: flex;
     justify-content: center;
     border: 1px solid black;
@@ -24,10 +24,14 @@ main{
                          "c d";
     border: 1px solid black;
 }
+.pos{
+    width: 200px;
+}
 .card-pos-a{
     grid-area: a;
     border: 1px solid black;
     background-color: gray;
+
 }
 .card-pos-b{
     grid-area: b;
@@ -43,6 +47,11 @@ main{
     grid-area: d;
     border: 1px solid black;
     background-color: firebrick;
+}
+.card-pos-a, .card-pos-b, .card-pos-c, .card-pos-d{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .card{
     position: absolute;

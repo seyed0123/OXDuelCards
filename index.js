@@ -1,14 +1,16 @@
-const cardObjectDefinitions=[
-    {id:1 , imagePath:'/images/card-KingHearts.png'},
-    {id:2 , imagePath:'/images/card-JackClubs.png'},
-    {id:3 , imagePath:'/images/card-QueenDiamonds.png'},
-    {id:4 , imagePath:'/images/card-AceSpades.png'}
-]
+document.addEventListener("DOMContentLoaded", function() {
+    const cardObjectDefinitions = [
+        {id: 1, imagePath: '/images/card-KingHearts.png'},
+        {id: 2, imagePath: '/images/card-JackClubs.png'},
+        {id: 3, imagePath: '/images/card-QueenDiamonds.png'},
+        {id: 4, imagePath: '/images/card-AceSpades.png'}
+    ]
 
-const cardBackImg = '/images/card-back-blue.png'
+    const cardBackImgPath = 'images/card-back-Blue.png'
 
 
-const  cardContainerElem = document.querySelector('.card-container')
+    const cardContainerElem = document.querySelector('.card-container')
+
 //     < div
 // className = "card" >
 //     < div
@@ -24,52 +26,84 @@ const  cardContainerElem = document.querySelector('.card-container')
 // </div>
 // </div>
 // </div>
-function createCard(cardItem){
-    const cardElem = createCard('div')
-    const cardInnerElem = createCard('div')
-    const cardFrontElem = createCard('div')
-    const cardBackElem = createCard('div')
 
-    const cardFrontImg = createCard('img')
-    const cardBackImg = createCard('img')
-    addClassToElement(cardElem ,'card')
-    addIdToElement(cardElem , cardItem.id)
+    createCards()
 
-    addClassToElement(cardInnerElem ,'card-inner')
-    addClassToElement(cardFrontElem ,'card-front')
-    addClassToElement(cardBackElem ,'card-back')
+    function createCards() {
+        cardObjectDefinitions.forEach((cardItem) => {
+            console.log(cardItem)
+            createCard(cardItem)
+        })
+    }
 
-    addSrcToImg(cardBackImg ,cardBackImg)
-    addSrcToImg(cardFrontImg , cardItem.imagePath)
+    function createCard(cardItem) {
+        const cardElem = createElement('div')
+        const cardInnerElem = createElement('div')
+        const cardFrontElem = createElement('div')
+        const cardBackElem = createElement('div')
 
-    addClassToElement(cardBackImg , 'card-img')
-    addClassToElement(cardFrontImg , 'card-img')
+        const cardFrontImg = createElement('img')
+        const cardBackImg = createElement('img')
+        addClassToElement(cardElem, 'card')
+        addIdToElement(cardElem, cardItem.id)
 
-    addChildElement(cardFrontElem , cardFrontImg)
-    addChildElement(cardBackElem , cardBackImg)
+        addClassToElement(cardInnerElem, 'card-inner')
+        addClassToElement(cardFrontElem, 'card-front')
+        addClassToElement(cardBackElem, 'card-back')
 
-    addChildElement(cardInnerElem , cardFrontElem)
-    addChildElement(cardInnerElem , cardBackElem)
+        addSrcToImg(cardBackImg, cardBackImgPath)
+        addSrcToImg(cardFrontImg, cardItem.imagePath)
 
-    addChildElement(cardElem , cardInnerElem)
-}
+        addClassToElement(cardBackImg, 'card-img')
+        addClassToElement(cardFrontImg, 'card-img')
 
-function createElement(elemType) {
-    return document.createElement(elemType)
-}
+        addChildElement(cardFrontElem, cardFrontImg)
+        addChildElement(cardBackElem, cardBackImg)
 
-function addClassToElement(elem , className) {
-    elem.classList.add(className)
-}
+        addChildElement(cardInnerElem, cardFrontElem)
+        addChildElement(cardInnerElem, cardBackElem)
 
-function addIdToElement(elem , id) {
-    elem.id =id
-}
+        addChildElement(cardElem, cardInnerElem)
 
-function addSrcToImg(imgElem , imgPath) {
-    imgElem.src=imgPath
-}
+        addCardToGrid(cardElem, cardItem.id)
+    }
 
-function addChildElement(parentElem , childElem) {
-    parentElem.appendChild(childElem)
-}
+    function createElement(elemType) {
+        return document.createElement(elemType)
+    }
+
+    function addClassToElement(elem, className) {
+        elem.classList.add(className)
+    }
+
+    function addIdToElement(elem, id) {
+        elem.id = id
+    }
+
+    function addSrcToImg(imgElem, imgPath) {
+        imgElem.src = imgPath
+    }
+
+    function addChildElement(parentElem, childElem) {
+        parentElem.appendChild(childElem)
+    }
+
+    function addCardToGrid(card, id) {
+        debugger;
+        const cardPosition = mapCardIdToGrid(id)
+        const cardPostElem = document.querySelector(cardPosition)
+        addChildElement(cardPostElem, card)
+    }
+
+    function mapCardIdToGrid(id) {
+        if (id === 1) {
+            return '.card-pos-a'
+        } else if (id === 2) {
+            return '.card-pos-b'
+        } else if (id === 3) {
+            return '.card-pos-c'
+        } else if (id === 4) {
+            return '.card-pos-d'
+        }
+    }
+});
